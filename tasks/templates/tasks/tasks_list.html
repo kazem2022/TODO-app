@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo</title>
+</head>
+<body>
+    <ul>
+        {%for item in items%}
+            <a href="/tasks/{{item.pk}}">
+                <li><h2>{{item.category}}</h2></li>
+                <li><h3>{{item.title}} - {{item.completed}} - {{item.created_date}}</li></h3>
+            </a>
+        {%endfor%}
+
+        
+        <!-- {% for item in items %}
+        {% for category in categories %}
+            {% if item.category == category %}
+        {{ item.category }}
+        {{ item.title }} - {{ item.completed }} - {{ item.created_date }}
+            {% endif %}
+        {% endfor %}
+        {% endfor %} -->
+    </ul>
+</body>
+</html>
