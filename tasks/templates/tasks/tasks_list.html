@@ -1,33 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToDo</title>
-</head>
-<body>
-    <a href="/tasks/create/"><button style="padding:5px;margin:50px; background-color:aquamarine">create task +</button></a>
-    <ul>
-        {% for cat in categories %}
-        <li><h2>{{cat}}</h2></li>
-            {%for item in items%}
-                {% if item.category == cat %}
-                        <a href="/tasks/{{item.pk}}">
-                    <li><h3>{{item.title}} - {{item.completed}} - {{item.created_date}}</li></h3>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="todo app" content="todo app for personal usage">
+        <meta name="todo" content="todo, task, daily tasks manager">
+        <title>ToDo</title>
+    </head>
+    <body>
+        <a href="/tasks/create/">
+            <button style="padding:5px;margin:50px; background-color:aquamarine">create task +</button>
+        </a>
+        <ul>
+            {% for cat in categories %}
+                <li>
+                    <h2>{{ cat }}</h2>
+                </li>
+                {% for item in items %}
+                    {% if item.category == cat %}
+                        <a href="/tasks/{{ item.pk }}">
+                            <li>
+                                <h3>{{ item.title }} - {{ item.completed }} - {{ item.created_date }}</h3>
+                            </li>
                         </a>
-                {%endif%}
-            {%endfor%}
-        {%endfor%}
-
-        
-        <!-- {% for item in items %}
-        {% for category in categories %}
-            {% if item.category == category %}
-        {{ item.category }}
-        {{ item.title }} - {{ item.completed }} - {{ item.created_date }}
-            {% endif %}
-        {% endfor %}
-        {% endfor %} -->
-    </ul>
-</body>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </ul>
+        <script src="your-script.js"></script>
+    </body>
 </html>
