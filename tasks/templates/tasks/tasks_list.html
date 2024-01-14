@@ -6,10 +6,11 @@
     <title>ToDo</title>
 </head>
 <body>
+    <a href="/tasks/create/"><button>create task</button></a>
     <ul>
         {%for item in items%}
+        <li><h2>{{item.category}}</h2></li>
             <a href="/tasks/{{item.pk}}">
-                <li><h2>{{item.category}}</h2></li>
                 <li><h3>{{item.title}} - {{item.completed}} - {{item.created_date}}</li></h3>
             </a>
         {%endfor%}
