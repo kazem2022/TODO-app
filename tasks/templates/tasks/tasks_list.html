@@ -6,13 +6,17 @@
     <title>ToDo</title>
 </head>
 <body>
-    <a href="/tasks/create/"><button>create task</button></a>
+    <a href="/tasks/create/"><button style="padding:5px;margin:50px; background-color:aquamarine">create task +</button></a>
     <ul>
-        {%for item in items%}
-        <li><h2>{{item.category}}</h2></li>
-            <a href="/tasks/{{item.pk}}">
-                <li><h3>{{item.title}} - {{item.completed}} - {{item.created_date}}</li></h3>
-            </a>
+        {% for cat in categories %}
+        <li><h2>{{cat}}</h2></li>
+            {%for item in items%}
+                {% if item.category == cat %}
+                        <a href="/tasks/{{item.pk}}">
+                    <li><h3>{{item.title}} - {{item.completed}} - {{item.created_date}}</li></h3>
+                        </a>
+                {%endif%}
+            {%endfor%}
         {%endfor%}
 
         
