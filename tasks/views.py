@@ -1,9 +1,10 @@
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
-from tasks.forms import TaskForm
+from tasks.forms import TaskForm, TaskCategoryForm
 from tasks.models import Category, TodoItem
-from django.contrib.auth.decorators import login_required
+
 
 @login_required
 def todo_list(request):
@@ -12,11 +13,13 @@ def todo_list(request):
     context = {"items": items, "categories": categories}
     return render(request, "tasks/tasks_list.html", context=context)
 
+
 @login_required
 def todo_detail(request, pk):
     item = TodoItem.objects.get(pk=pk)
     context = {"item": item}
     return render(request, "tasks/task_detail.html", context=context)
+
 
 @login_required
 def todo_create(request):
@@ -29,4 +32,15 @@ def todo_create(request):
         forms = TaskForm()
 
     return render(request, "tasks/task_create.html", {"forms": forms})
-    # return render(request, 'tasks/task_create.html', {'forms': forms})
+
+@login_required
+def category_create(request):
+    if request.method == "POST":
+        forms = TaskCategoryForm(request.POST)
+        if forms.is_valid():
+            Category.objects.create(**forms.cleaned_data)
+            return HttpResponseRedirect("/tasks/")
+    else:
+        forms = TaskCategoryForm()
+
+    return render(request, "tasks/category_create.html", {"forms": forms})

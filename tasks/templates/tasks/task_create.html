@@ -6,6 +6,7 @@
         <title>task create</title>
     </head>
     <body>
+       
         <form action="/tasks/create/" method="POST">
             {% csrf_token %}
             {{ forms.as_p }}
