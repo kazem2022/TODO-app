@@ -16,7 +16,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-
 from tasks.views import todo_create, category_create, todo_detail, todo_list
 
 urlpatterns = [

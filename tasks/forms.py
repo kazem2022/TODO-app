@@ -15,7 +15,7 @@ class TaskForm(forms.Form):
     title = forms.CharField(max_length=100)
     detail = forms.CharField(widget=forms.Textarea)
     created_date = forms.DateTimeField(initial=datetime.now)
-    completede = forms.BooleanField(required=False)
+    completed = forms.BooleanField(required=False)
     # category = forms.CharField(max_length=100)
     category = forms.ModelChoiceField(queryset=Category.objects.all())
 
