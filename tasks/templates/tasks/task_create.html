@@ -8,8 +8,9 @@
     <body>
        
         <form action="/tasks/create/" method="POST">
-            {% csrf_token %}
-            {{ forms.as_p }}
+            <!-- {% csrf_token %}
+            {{ form.as_p }} -->
+            {{user_categories.as_p}}
             <input type="submit" value="save" />
         </form>
     </body>

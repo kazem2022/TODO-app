@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <!-- <form action="/tasks/" method="POST">
+        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit">login</button>
+
+    </form> -->
+    <form method="post" action="">
+        <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+        {{form.as_p}}
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
+
+<!-- Forbidden (403)
+CSRF verification failed. Request aborted. -->

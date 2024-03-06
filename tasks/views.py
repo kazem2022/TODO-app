@@ -26,18 +26,26 @@ def todo_detail(request, pk):
     return render(request, "tasks/task_detail.html", context=context)
 
 
+from django.shortcuts import render, HttpResponseRedirect
+from .forms import TaskForm
+from .models import TodoItem
+
 @login_required
 def todo_create(request):
     if request.method == "POST":
-        forms = TaskForm(request.POST)
-        if forms.is_valid():
-
-            TodoItem.objects.create(**forms.cleaned_data, user=request.user)
+        form = TaskForm(request.POST)
+        if form.is_valid():
+            todo_item = form.save(commit=False)
+            todo_item.user = request.user
+            todo_item.save()
             return HttpResponseRedirect("/tasks/")
     else:
-        forms = TaskForm()
+        form = TaskForm()
 
-    return render(request, "tasks/task_create.html", {"forms": forms})
+    user_categories = Category.objects.filter(user=request.user)  # Assuming the user has a related_name 'categories' in the Category model
+    print(user_categories)
+    
+    return render(request, "tasks/task_create.html", {"form": form, "user_categories":user_categories})
 
 @login_required
 def category_create(request):
@@ -50,3 +58,7 @@ def category_create(request):
         forms = TaskCategoryForm()
 
     return render(request, "tasks/category_create.html", {"forms": forms})
+
+
+def home_view(request):
+    return render(request, 'tasks/home.html')

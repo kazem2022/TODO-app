@@ -17,6 +17,8 @@ class TodoItem(models.Model):
     completed = models.BooleanField(default=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    # user = models.OneToOneField(User, on_delete=models.CASCADE)
+    # category = models.ManyToManyField(Category)
     
 
     def __str__(self):

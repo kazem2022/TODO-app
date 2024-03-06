@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome</title>
+</head>
+<body>
+  <p>welcom to task manager app, please login to set your todo tasks</p> 
+  <a href="/accounts/login"><button>Login</button></a> 
+  <h1>
+    {% if request.user.is_authenticated%}
+        <h1>you are logged in as {{request.user.username}}</h1>
+    {%endif%}
+  </h1>
+</body>
+</html>
