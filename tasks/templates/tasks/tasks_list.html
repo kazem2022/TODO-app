@@ -8,6 +8,11 @@
         <title>ToDo</title>
     </head>
     <body>
+    
+        {% if request.user.is_authenticated%}
+            <p>you are logged in as: {{request.user.username}}</p>
+        {%endif%}
+        
         <li><a href="{% url 'accounts:logout' %}"><button>Logout</button></a></li>
         <a href="/tasks/category_create/">
             <button style="padding:5px;margin:50px; background-color:aquamarine">category +</button>

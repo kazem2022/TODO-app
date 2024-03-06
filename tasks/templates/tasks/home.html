@@ -6,12 +6,8 @@
     <title>Welcome</title>
 </head>
 <body>
-  <p>welcom to task manager app, please login to set your todo tasks</p> 
+  <h1>welcom to task manager app, please login to set your todo tasks</h1>
   <a href="/accounts/login"><button>Login</button></a> 
-  <h1>
-    {% if request.user.is_authenticated%}
-        <h1>you are logged in as {{request.user.username}}</h1>
-    {%endif%}
-  </h1>
+  <a href="{% url 'accounts:signup' %}"><button>Sign up</button></a>
 </body>
 </html>

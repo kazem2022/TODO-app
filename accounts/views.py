@@ -1,8 +1,8 @@
 from django.shortcuts import render
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.views import View
 from django.contrib.auth import authenticate, login, logout
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponseBadRequest
 from django.shortcuts import redirect
 from django.contrib.auth.decorators import login_required
 
@@ -27,11 +27,27 @@ class LoginView(View):
         else:
             return redirect("/tasks")
         
-# @login_required       
 class LogoutView(View):
     
     def get(self, request):
         logout(request)                  
         return redirect("/")
  
+class SignupView(View):
+    def get(self, request):
+        form = UserCreationForm()
+        context = {"form": form}
+        return render(request, "signup.html", context=context)
+
+    def post(self, request):
+        if  not request.user.is_authenticated:
+            form = UserCreationForm(data=request.POST)
+            if form.is_valid():
+                form.save()
+                return redirect('/accounts/login')  # Redirect to the appropriate URL after successful login
+            else:
+                return HttpResponseBadRequest("Form data is invalid. Please correct the errors.")
+                    
+        else:
+            return redirect("/tasks")
  
