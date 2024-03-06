@@ -4,6 +4,7 @@ from django.views import View
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
+from django.contrib.auth.decorators import login_required
 
 class LoginView(View):
     
@@ -26,11 +27,11 @@ class LoginView(View):
         else:
             return redirect("/tasks")
         
-        
+# @login_required       
 class LogoutView(View):
     
     def get(self, request):
         logout(request)                  
-        return redirect("home")
+        return redirect("/")
  
  
